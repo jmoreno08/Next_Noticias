@@ -1,0 +1,28 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #182235;
+  background: #f6f7fa;
+  line-height: 1.6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: min(100% - 2rem, 64rem);
+  margin-inline: auto;
+}
+
+header, footer { padding-block: 1.5rem; }
+main { flex: 1; padding-block: 4rem; }
+.brand { color: inherit; font-size: 1.25rem; font-weight: 750; }
+.eyebrow { color: #2454a4; font-weight: 600; }
+h1 { font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1.15; }
+footer { color: #526078; }
+a:focus-visible { outline: 3px solid #2454a4; outline-offset: 4px; }
