@@ -1,0 +1,53 @@
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <div class="footer__brand-row">
+        <img src="images/logo.svg" alt="Logo de NEXT Noticias" class="footer__logo" />
+        <span class="footer__title">NEXT Noticias</span>
+      </div>
+      <p class="footer__description">
+        Tu portal de confianza para conectarte con la verdad, la innovación y el acontecer mundial.
+      </p>
+    </div>
+
+    <div class="footer__links">
+      <span class="footer__heading">Enlaces</span>
+      @for (link of footerLinks; track link.label) {
+        <a
+          class="footer__link"
+          href="#"
+          (click)="$event.preventDefault(); onFooterLinkClick(link)"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </div>
+
+    <div class="footer__social">
+      <span class="footer__heading">Síguenos</span>
+      <div class="footer__social-icons">
+        @for (social of socialLinks; track social.name) {
+          <button
+            type="button"
+            class="footer__social-button"
+            [attr.aria-label]="social.name"
+            (click)="onSocialLinkClick(social)"
+          >
+            <img [src]="social.icon" alt="" class="footer__social-icon" />
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__divider"></div>
+
+  <div class="footer__bottom">
+    <span class="footer__copyright">© {{ currentYear }} NEXT Noticias. Todos los derechos reservados.</span>
+    <span class="footer__legal">
+      <a href="#" (click)="$event.preventDefault(); onLegalLinkClick('Política de Privacidad')">Política de Privacidad</a>
+      &nbsp;•&nbsp;
+      <a href="#" (click)="$event.preventDefault(); onLegalLinkClick('Términos de Servicio')">Términos de Servicio</a>
+    </span>
+  </div>
+</footer>
