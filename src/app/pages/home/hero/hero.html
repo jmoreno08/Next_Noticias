@@ -1,0 +1,24 @@
+<section class="hero">
+  <div class="hero__content">
+    <div class="hero__text">
+      <h1 class="hero__title">La actualidad que te conecta</h1>
+      <p class="hero__description">
+        Descubre noticias relevantes de tecnología, educación, turismo, innovación y mucho más. Todo en un solo lugar.
+      </p>
+    </div>
+    <button type="button" class="hero__cta" (click)="onExploreClick()">
+      Explorar noticias →
+    </button>
+  </div>
+
+  <div class="hero__featured">
+    <article class="hero__card">
+      <span class="hero__card-label">{{ featured.label }}</span>
+      <h2 class="hero__card-title">{{ featured.title }}</h2>
+      <p class="hero__card-description">{{ featured.description }}</p>
+      <button type="button" class="hero__card-link" (click)="onReadFeaturedClick()">
+        Leer artículo completo →
+      </button>
+    </article>
+  </div>
+</section>
