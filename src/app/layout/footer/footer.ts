@@ -27,10 +27,10 @@ export class Footer {
   ];
 
   protected readonly socialLinks: SocialLink[] = [
-    { name: 'Facebook', icon: 'images/social-circle-facebook.svg' },
-    { name: 'Twitter', icon: 'images/social-circle-twitter.svg' },
-    { name: 'Instagram', icon: 'images/social-circle-instagram.svg' },
-    { name: 'LinkedIn', icon: 'images/social-circle-linkedin.svg' },
+    { name: 'Facebook', icon: 'icons/social-circle-facebook.svg' },
+    { name: 'Twitter', icon: 'icons/social-circle-twitter.svg' },
+    { name: 'Instagram', icon: 'icons/social-circle-instagram.svg' },
+    { name: 'LinkedIn', icon: 'icons/social-circle-linkedin.svg' },
   ];
 
   onFooterLinkClick(link: FooterLink): void {
