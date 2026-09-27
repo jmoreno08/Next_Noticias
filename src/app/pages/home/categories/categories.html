@@ -1,0 +1,19 @@
+<section class="categories">
+  <h2 class="categories__title">Explorar por Categoría</h2>
+
+  <div class="categories__list">
+    @for (category of categories; track category.label) {
+      <button
+        type="button"
+        class="categories__pill"
+        [class.categories__pill--active]="category.active"
+        (click)="onCategoryClick(category)"
+      >
+        <span class="categories__icon">
+          <img [src]="category.icon" alt="" />
+        </span>
+        {{ category.label }}
+      </button>
+    }
+  </div>
+</section>
