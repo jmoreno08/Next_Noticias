@@ -1,186 +1,142 @@
-# NextNoticias
+# Plataforma Web de Noticias
 
-## Datos de noticias
+## Descripción
 
-`public/data/noticias.json` contiene diez noticias de demostración con ID,
-título, categoría, descripción, contenido, imagen, fecha, autor y destacado.
-Los contenidos son ejemplos académicos, no información periodística verificada.
+NEXT Noticias es un prototipo académico para explorar noticias, guardar favoritos
+y gestionar publicaciones locales. Reutiliza el proyecto Angular existente y el
+[diseño NEXT Noticias en Figma](https://www.figma.com/design/iLZrtS6bVlLgCuEsXHtKJL/NEXT-Noticias).
+Las diez noticias del catálogo son ejemplos académicos, no periodismo verificado.
 
-El modelo compartido está en `src/app/models/news.ts`. `NewsService`, en
-`src/app/services/news.service.ts`, lee el JSON mediante `HttpClient` y ofrece:
+## Tecnologías
 
-- `obtenerNoticias()` y `obtenerNoticiaPorId(id)`.
-- `obtenerDestacadas()`.
-- `buscarNoticias(titulo)`, sin distinguir mayúsculas ni tildes.
-- `filtrarPorCategoria(categoria, titulo)`, con búsqueda y categoría combinables.
+- Angular 22 y Angular Router.
+- TypeScript, HTML y CSS.
+- Reactive Forms y RxJS.
+- JSON local y HttpClient.
+- localStorage para favoritos y noticias creadas.
+- Vitest para pruebas automatizadas.
 
-El servicio comparte la carga entre consumidores, rechaza datos incompletos o
-IDs duplicados y devuelve un error amigable cuando falla la carga. Una nueva
-suscripción permite reintentar. La URL relativa respeta el despliegue en GitHub
-Pages. La portada, el listado y el detalle ya consumen este servicio.
-Los favoritos se guardan localmente mediante `FavoritesService`.
+## Funcionalidades
 
-Las seis fotografías de `public/images/news/` proceden del frame
-[Noticias desktop de NEXT Noticias en Figma](https://www.figma.com/design/iLZrtS6bVlLgCuEsXHtKJL/NEXT-Noticias?node-id=68-10).
-Sus posiciones son: computación cuántica, educación y turismo en la primera fila;
-negocios, innovación médica y energía en la segunda. Los datos adicionales
-reutilizan esas fotografías como ilustraciones de ejemplo.
+- Home con hero, categorías, noticias destacadas y últimas noticias dinámicas.
+- Listado con tarjetas, búsqueda por título, categorías y paginación de seis noticias.
+- Detalle con autor, fecha, contenido completo, favoritos y noticias relacionadas.
+- Favoritos sin duplicados y persistentes después de recargar.
+- Contacto con validación de nombre, correo, asunto y mensaje.
+- Administración: crear, listar y eliminar noticias locales.
+- Estados de carga, error, reintento, búsqueda vacía y noticia inexistente.
+- Avisos globales de problemas de almacenamiento e imagen local de respaldo.
+- Diseño adaptable a escritorio, tablet y móvil.
 
-Para verificar la lógica y la estructura actual: `npm test -- --watch=false`.
+## Estructura general
 
-## Secciones de noticias de la portada
-
-La portada incluye tres noticias destacadas y cuatro noticias recientes, basadas en
-la referencia `next-noticias-home.png`. Las cuadrículas se adaptan a una columna
-en pantallas de hasta 720 px.
-
-Las fotografías ahora son imágenes individuales del JSON. Destacadas, últimas
-noticias y hero abren su artículo mediante Angular Router; las categorías abren
-el listado filtrado. La captura `public/images/news-reference.png` se conserva
-como referencia histórica y ya no se utiliza para mostrar fotografías.
-
-## Navegación y consulta — segunda etapa de la Entrega 2
-
-- `/`: portada dinámica, tres destacadas y cuatro noticias ordenadas por fecha.
-- `/noticias`: búsqueda por título, filtro por categoría y paginación de seis
-  tarjetas. `q`, `categoria` y `pagina` se conservan en la URL para compartir
-  búsquedas y restaurarlas al volver del detalle.
-- `/noticias/:id`: título, categoría, autor, fecha, fotografía, contenido,
-  regreso al listado y noticias relacionadas de la misma categoría.
-- Las rutas o noticias inexistentes muestran un mensaje amigable. Los fallos
-  de carga permiten reintentar y las búsquedas vacías permiten limpiar filtros.
-
-`NewsCard` se reutiliza en portada, listado y noticias relacionadas. El listado
-y el detalle siguen los frames `68:10` y `68:181` del archivo de Figma; el
-contenido e imágenes cambian según la noticia consultada. Las fechas se muestran
-en español. Las vistas se han verificado en escritorio, tablet y móvil.
-
-Administración está disponible en `/administracion` para crear y eliminar noticias locales.
-El inicio de sesión no está incluido en el alcance de la entrega.
-No hay backend.
-
-## Favoritos — tercera etapa de la Entrega 2
-
-- Guardar y quitar noticias desde las tarjetas y el detalle.
-- Página `/favoritos`, con contador y el estado vacío «Aún no tienes noticias guardadas.».
-- Persistencia en `localStorage` bajo la clave `next-noticias:favorites`.
-  Solo se almacenan IDs; la información se obtiene del servicio de noticias.
-- Se evitan duplicados, se descartan IDs inválidos y no se muestran noticias que
-  ya no existan. Los botones comparten el estado durante la navegación.
-- Los errores de lectura o escritura muestran un mensaje. Si una escritura
-  falla, el estado anterior se conserva para no simular un guardado exitoso.
-
-`FavoriteButton` se reutiliza en tarjetas y detalle con nombre accesible y
-`aria-pressed`. El diseño sigue el frame `68:324` de Figma y reutiliza las fotos
-de cada noticia. Los favoritos pertenecen al navegador y origen actual: no se
-comparten entre dispositivos ni entre localhost y el sitio publicado.
-
-Validación de esta etapa: 20 pruebas unitarias/de integración, compilación de
-producción y comprobación en navegador de guardado, recarga, eliminación,
-teclado y diseños a 1440, 768, 390 y 320 px.
-
-## Contacto — cuarta etapa de la Entrega 2
-
-La ruta `/contacto`, disponible en header y footer, sigue el frame `68:426` de
-Figma. Utiliza Reactive Forms con campos obligatorios: nombre (mínimo 3
-caracteres), correo válido, asunto y mensaje (mínimo 10 caracteres). Los textos
-compuestos solo de espacios no son válidos. Los errores aparecen al tocar un
-campo o intentar enviar; un envío inválido enfoca el primer campo con error.
-
-Un envío válido muestra «Tu mensaje ha sido enviado correctamente.» y restablece
-el formulario. Es una simulación académica indicada en pantalla: no se hacen
-peticiones de envío ni se almacenan datos personales. Los datos del panel de
-contacto son los ejemplos del diseño, no canales verificados de atención.
-
-Validación acumulada: 27 pruebas aprobadas, compilación de producción y revisión
-de contacto en navegador a 1440, 768, 390 y 320 px, incluidos estados de error,
-confirmación, restablecimiento y carga de iconos.
-
-En desarrollo, `ng serve` permite abrir directamente las rutas. En alojamiento
-estático, el servidor debe devolver `index.html` para rutas de Angular. GitHub
-Pages requiere configurar esa recuperación antes de garantizar recargas o
-enlaces directos como `/Next_Noticias/noticias/2`; esta etapa no modifica el
-workflow de despliegue.
-
-La versión actual de Angular requiere Node.js 22.22.3+, 24.15.0+ o 26+.
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
-
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
+```text
+public/
+  data/noticias.json       # Diez noticias iniciales
+  images/                 # Fotografías y respaldo local
+  icons/                  # Iconos del diseño
+  404.html                # Recuperación de enlaces en GitHub Pages
+src/app/
+  layout/                 # Header y footer
+  models/news.ts          # Modelo compartido
+  pages/                  # Home, noticias, detalle, favoritos, contacto, admin
+  services/               # Catálogo, publicaciones locales y favoritos
+  shared/                 # Tarjetas, botón favorito y directiva de imágenes
+  app.routes.ts           # Rutas del portal
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+`NewsService` lee y valida el JSON, comparte su carga y lo combina con
+`LocalNewsService`. Ofrece obtenerNoticias, obtenerNoticiaPorId,
+obtenerDestacadas, buscarNoticias y filtrarPorCategoria. La búsqueda ignora
+mayúsculas y tildes. No se modifica físicamente el archivo JSON.
 
-## Code scaffolding
+## Instalación
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Usar Node.js compatible con Angular 22 (para esta entrega se verificó Node 24.19.0).
+Desde la carpeta del proyecto:
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
+Para reproducir exactamente las dependencias del lockfile se puede usar `npm ci`.
 
-To build the project run:
+## Ejecución
 
 ```bash
-ng build
+npx ng serve
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Si Angular CLI está instalado globalmente, también se puede ejecutar `ng serve`.
 
-## Running unit tests
+## Acceso
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Abrir [http://localhost:4200](http://localhost:4200).
+
+| Ruta              | Vista                       |
+| ----------------- | --------------------------- |
+| `/`               | Home                        |
+| `/noticias`       | Listado, búsqueda y filtros |
+| `/noticias/:id`   | Detalle                     |
+| `/favoritos`      | Noticias guardadas          |
+| `/contacto`       | Formulario de contacto      |
+| `/administracion` | Gestión de noticias locales |
+
+La búsqueda conserva `q`, `categoria` y `pagina` en la URL.
+
+## Entrega 2 – Prototipo funcional
+
+Esta versión incluye visualización dinámica de noticias, navegación con Angular
+Router, detalle, favoritos, formulario validado, mini CRUD y persistencia local.
+El contacto exige nombre de al menos 3 caracteres, correo válido, asunto y mensaje
+de al menos 10 caracteres. Al enviar muestra una confirmación simulada: no envía
+correos ni guarda datos personales.
+
+Administración exige los campos de la noticia, una fecha válida y una URL HTTPS
+para la imagen. Permite marcar destacadas y eliminar solo publicaciones locales.
+Si una imagen falla se muestra una ilustración local. No incluye edición.
+
+### Persistencia y límites
+
+- `next-noticias:favorites`: IDs de favoritos.
+- `next-noticias:local-news`: noticias creadas localmente.
+- Los datos pertenecen al navegador y origen; no se comparten entre dispositivos.
+- Ante fallos de escritura se conserva el estado previo y se muestra un aviso.
+- Ante datos locales inválidos se muestra un aviso global y se usa un estado vacío;
+  el contenido original no se borra automáticamente del almacenamiento.
+- No hay backend ni autenticación. Inicio de sesión, enlaces sociales y páginas
+  legales son elementos pendientes del diseño, fuera del alcance funcional de esta entrega.
+- Los datos de contacto proceden del diseño y son ejemplos.
+
+## Validación
 
 ```bash
-ng test
+npm test -- --watch=false
+npx ng build
 ```
 
-## Running end-to-end tests
+No hay un objetivo de lint ni un ejecutor e2e configurado. Las pruebas incluyen
+carga y errores del JSON, búsqueda, filtros, rutas, favoritos, contacto,
+persistencia y eliminación local, integración del catálogo e imágenes de respaldo.
+Se revisaron los flujos principales en navegador y tamaños de 1440, 768, 390 y
+320 px. La tabla de administración permite desplazamiento dentro de su contenedor.
 
-For end-to-end (e2e) testing, run:
+## GitHub Pages
 
 ```bash
-ng e2e
+npx ng build --base-href /Next_Noticias/
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+El resultado se genera en `dist/Next_Noticias/browser`. El workflow existente
+publica desde `master` hacia `gh-pages`; trabajar en una rama feature no publica.
+`public/404.html` redirige los enlaces profundos al índice y `src/index.html`
+restaura la ruta antes de iniciar Angular, conservando consulta y fragmento.
+Así se admiten recargas y enlaces como `/Next_Noticias/noticias/2`.
+Si cambia el nombre del repositorio hay que ajustar tanto el base-href como la
+constante `base` de `404.html`. Esta recuperación requiere JavaScript y el primer
+acceso a una ruta profunda recibe el 404 de Pages antes de la redirección.
+La validación local no sustituye una comprobación del sitio después de publicar.
 
-## Additional Resources
+## Autor
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-## Administración y mini CRUD (etapa 5)
-
-El panel `/administracion` sigue el diseño de administración de Figma. Permite
-crear noticias con título, categoría, descripción, contenido, imagen HTTPS,
-autor, fecha válida y opción de destacada. Los campos obligatorios muestran
-mensajes de validación. El listado permite abrir el detalle y eliminar únicamente
-noticias creadas localmente; no permite modificar ni borrar el JSON original.
-
-`LocalNewsService` guarda los artículos en `next-noticias:local-news` y conserva
-el estado anterior si falla la escritura. Valida los datos recuperados y comunica
-los errores de almacenamiento. `NewsService` combina ese estado con el JSON para
-actualizar portada, listado, búsqueda, filtros, detalle y favoritos. Los IDs se
-generan comprobando los existentes en ambos orígenes.
-
-Los datos pertenecen a este navegador y origen, no se sincronizan entre equipos.
-Las URLs de imágenes deben ser HTTPS y apuntar a imágenes accesibles públicamente.
-Este panel académico no incluye autenticación ni backend.
-
-Verificado en navegador: validación de obligatorios, creación, recarga, búsqueda,
-detalle, eliminación y persistencia de la eliminación; tamaños de 1440, 768, 390
-y 320 px sin desbordamiento horizontal del documento ni errores de ejecución.
-En móvil la tabla tiene desplazamiento horizontal dentro de su contenedor.
+Jonathan Moreno

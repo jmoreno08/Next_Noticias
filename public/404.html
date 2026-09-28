@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>NEXT Noticias</title>
+    <script>
+      // GitHub Pages serves this file for deep links under the project path.
+      const base = '/Next_Noticias/';
+      if (location.pathname.startsWith(base)) {
+        const route = location.pathname.slice(base.length) + location.search + location.hash;
+        location.replace(base + '?restoreRoute=' + encodeURIComponent(route));
+      }
+    </script>
+  </head>
+  <body>
+    <p>Abriendo NEXT Noticias… <a href="/Next_Noticias/">Ir al inicio</a></p>
+  </body>
+</html>

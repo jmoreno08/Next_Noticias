@@ -4,6 +4,7 @@
     @for (article of articles(); track article.id) {
       <article class="latest-news__card">
         <img
+          appNewsImage
           class="news-photo"
           [src]="article.imagen"
           alt=""

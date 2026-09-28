@@ -1,4 +1,7 @@
 <app-header />
+@if (localNews.error()) {
+  <p class="storage-error" role="alert">{{ localNews.error() }}</p>
+}
 @if (favorites.error()) {
   <p class="storage-error" role="alert">{{ favorites.error() }}</p>
 }

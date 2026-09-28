@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
     <title>Next Noticias</title>
     <base href="/" />
+    <script>
+      // Restore the original route before Angular Router starts.
+      const restored = new URLSearchParams(location.search).get('restoreRoute');
+      if (restored !== null) {
+        const base = new URL(document.baseURI);
+        const target = new URL(restored, base);
+        if (target.origin === base.origin && target.pathname.startsWith(base.pathname)) {
+          history.replaceState(null, '', target.pathname + target.search + target.hash);
+        }
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

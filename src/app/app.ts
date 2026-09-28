@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FavoritesService } from './services/favorites.service';
+import { LocalNewsService } from './services/local-news.service';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './layout/header/header';
 import { Footer } from './layout/footer/footer';
@@ -12,4 +13,5 @@ import { Footer } from './layout/footer/footer';
 })
 export class App {
   protected readonly favorites = inject(FavoritesService);
+  protected readonly localNews = inject(LocalNewsService);
 }

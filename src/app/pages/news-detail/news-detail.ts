@@ -1,3 +1,4 @@
+import { NewsImage } from '../../shared/news-image';
 import { Component, inject } from '@angular/core';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -9,7 +10,7 @@ import { FavoriteButton } from '../../shared/favorite-button/favorite-button';
 @Component({
   selector: 'app-news-detail',
   standalone: true,
-  imports: [AsyncPipe, DatePipe, RouterLink, NewsCard, FavoriteButton],
+  imports: [NewsImage, AsyncPipe, DatePipe, RouterLink, NewsCard, FavoriteButton],
   templateUrl: './news-detail.html',
   styleUrl: './news-detail.css',
 })

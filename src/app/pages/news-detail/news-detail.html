@@ -25,6 +25,7 @@
           ><time [attr.datetime]="article.fecha">{{ article.fecha | date: 'dd MMM yyyy' }}</time>
         </div>
         <img
+          appNewsImage
           class="detail__image"
           [src]="article.imagen"
           [alt]="article.titulo"

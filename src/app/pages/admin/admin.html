@@ -4,9 +4,6 @@
     Gestiona el contenido del portal, publica nuevos artículos y administra las noticias creadas.
   </p>
   <p class="local-note">Las noticias se guardan únicamente en este navegador.</p>
-  @if (local.error()) {
-    <p role="alert" class="error-banner">{{ local.error() }}</p>
-  }
   @if (loadError()) {
     <p role="alert" class="error-banner">
       {{ loadError() }} <button type="button" (click)="load()">Reintentar</button>
