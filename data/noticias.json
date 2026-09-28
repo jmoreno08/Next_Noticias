@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "titulo": "El despegue de la computación cuántica comercial",
+    "categoria": "Tecnología",
+    "descripcion": "Grandes corporaciones inician pruebas operativas con hardware cuántico para optimizar cadenas globales de logística y distribución.",
+    "contenido": "En este escenario de ejemplo, un equipo explora algoritmos cuánticos para comparar rutas de distribución. El proyecto combina simuladores y equipos experimentales, y mide los resultados frente a métodos tradicionales.\n\nLas pruebas buscan comprender las posibilidades y las limitaciones de la tecnología antes de llevarla a operaciones cotidianas. Esta noticia es contenido de demostración del prototipo académico.",
+    "imagen": "images/news/quantum.png",
+    "fecha": "2026-09-15",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": false
+  },
+  {
+    "id": 2,
+    "titulo": "La inteligencia artificial transforma la educación",
+    "categoria": "Educación",
+    "descripcion": "Aulas modernas adoptan asistentes inteligentes para personalizar la experiencia de aprendizaje de cada estudiante en tiempo real.",
+    "contenido": "Un aula de demostración utiliza asistentes digitales para proponer ejercicios según el progreso de cada estudiante. El docente revisa las recomendaciones y acompaña a quienes necesitan refuerzo.\n\nEl ejercicio plantea preguntas sobre privacidad, calidad de las respuestas y acceso equitativo. Los sistemas se presentan como herramientas de apoyo al trabajo docente. Esta noticia es contenido de demostración del prototipo académico.",
+    "imagen": "images/news/education.png",
+    "fecha": "2026-09-15",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": true
+  },
+  {
+    "id": 3,
+    "titulo": "Ecuador: un destino que conquista al mundo",
+    "categoria": "Turismo",
+    "descripcion": "Desde las majestuosas Islas Galápagos hasta el centro histórico de Quito, el país andino se consolida como el epicentro del ecoturismo.",
+    "contenido": "Esta propuesta editorial recorre paisajes y espacios culturales de Ecuador. El itinerario de ejemplo conecta la observación de fauna con recorridos urbanos y experiencias gestionadas por comunidades locales.\n\nEl enfoque invita a conocer las normas de conservación de cada destino y a planear visitas responsables. Esta noticia es contenido de demostración del prototipo académico, no una guía de viaje actualizada.",
+    "imagen": "images/news/tourism.png",
+    "fecha": "2026-09-15",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": true
+  },
+  {
+    "id": 4,
+    "titulo": "Finanzas verdes impulsan el mercado de bonos",
+    "categoria": "Negocios",
+    "descripcion": "Nuevas regulaciones estimulan la inversión corporativa en proyectos con huella de carbono neutral a nivel internacional.",
+    "contenido": "El caso académico presenta una empresa ficticia que estudia financiar proyectos de eficiencia energética. Su equipo compara objetivos ambientales, indicadores de seguimiento y mecanismos de rendición de cuentas.\n\nLa actividad permite discutir cómo evaluar afirmaciones ambientales y diferenciar metas de resultados verificables. Esta noticia es contenido de demostración y no constituye información financiera ni una descripción de regulaciones vigentes.",
+    "imagen": "images/news/business.png",
+    "fecha": "2026-09-14",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": false
+  },
+  {
+    "id": 5,
+    "titulo": "Universidades impulsan la innovación médica",
+    "categoria": "Ciencia e Innovación",
+    "descripcion": "Alianzas estratégicas entre la academia y las industrias tecnológicas aceleran la creación de patentes locales y soluciones de robótica aplicada.",
+    "contenido": "Un laboratorio universitario ficticio reúne estudiantes de ingeniería y diseño para desarrollar un prototipo robótico. El equipo documenta requisitos, pruebas y oportunidades de mejora.\n\nEl proyecto se limita a un entorno educativo y no implica aprobación para uso clínico. Esta noticia es contenido de demostración del prototipo académico.",
+    "imagen": "images/news/innovation.png",
+    "fecha": "2026-09-13",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": true
+  },
+  {
+    "id": 6,
+    "titulo": "El auge de la energía de fusión compacta",
+    "categoria": "Ciencia e Innovación",
+    "descripcion": "Nuevos reactores experimentales logran mantener el plasma estable por tiempo récord, abriendo la puerta a energía ilimitada.",
+    "contenido": "Este ejemplo editorial propone explorar las diferencias entre un experimento de laboratorio y una instalación capaz de suministrar energía. El contenido permite practicar una página de detalle con varios párrafos.\n\nEl titular y el resumen proceden del diseño del prototipo y no representan un resultado científico verificado. Esta noticia es contenido de demostración del proyecto académico.",
+    "imagen": "images/news/energy.png",
+    "fecha": "2026-09-12",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": false
+  },
+  {
+    "id": 7,
+    "titulo": "Nuevas becas de posgrado para ingenierías de software",
+    "categoria": "Educación",
+    "descripcion": "Una convocatoria de ejemplo promueve la formación en desarrollo de software y proyectos de investigación universitaria.",
+    "contenido": "La convocatoria ficticia reúne requisitos de inscripción, propuesta de investigación y acompañamiento académico. Su objetivo es ilustrar cómo se presenta una noticia educativa dentro de la plataforma.\n\nNo corresponde a una oferta real de becas. Esta noticia es contenido de demostración del prototipo académico.",
+    "imagen": "images/news/education.png",
+    "fecha": "2026-09-11",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": false
+  },
+  {
+    "id": 8,
+    "titulo": "Rutas de trekking de montaña ganan popularidad mundial",
+    "categoria": "Turismo",
+    "descripcion": "Comunidades y visitantes exploran propuestas de turismo responsable y conservación de los paisajes naturales.",
+    "contenido": "El reportaje de ejemplo describe un recorrido guiado y la preparación previa de un grupo de visitantes. La comunidad anfitriona presenta su historia y las medidas para cuidar el entorno.\n\nLa actividad plantea cómo equilibrar turismo y conservación sin describir una ruta real. Esta noticia es contenido de demostración del prototipo académico.",
+    "imagen": "images/news/tourism.png",
+    "fecha": "2026-09-10",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": false
+  },
+  {
+    "id": 9,
+    "titulo": "Dispositivos médicos impresos en 3D salvan vidas",
+    "categoria": "Ciencia e Innovación",
+    "descripcion": "Un proyecto académico explora el diseño y la fabricación de modelos para entrenamiento y simulación.",
+    "contenido": "Estudiantes elaboran modelos impresos en 3D para una simulación educativa. Registran el proceso de diseño, la selección de materiales y las observaciones de los participantes.\n\nEl titular forma parte del diseño de ejemplo: el proyecto no presenta dispositivos autorizados para tratar pacientes ni resultados clínicos reales. Esta noticia es contenido de demostración del prototipo académico.",
+    "imagen": "images/news/innovation.png",
+    "fecha": "2026-09-09",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": false
+  },
+  {
+    "id": 10,
+    "titulo": "La revolución de la infraestructura digital global",
+    "categoria": "Tecnología",
+    "descripcion": "Cómo la nube y las redes ultrarrápidas están tejiendo las conexiones del futuro cercano.",
+    "contenido": "Este caso de estudio presenta una organización ficticia que moderniza sus servicios digitales. El equipo compara alternativas de conectividad, almacenamiento y continuidad operativa.\n\nLa propuesta destaca la importancia de documentar decisiones y medir los resultados antes de ampliar una solución. Esta noticia es contenido de demostración del prototipo académico.",
+    "imagen": "images/hero-main-image.png",
+    "fecha": "2026-09-08",
+    "autor": "Redacción NEXT Noticias",
+    "destacada": false
+  }
+]
