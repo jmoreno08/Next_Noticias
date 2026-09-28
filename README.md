@@ -1,5 +1,72 @@
 # NextNoticias
 
+## Datos de noticias
+
+`public/data/noticias.json` contiene diez noticias de demostración con ID,
+título, categoría, descripción, contenido, imagen, fecha, autor y destacado.
+Los contenidos son ejemplos académicos, no información periodística verificada.
+
+El modelo compartido está en `src/app/models/news.ts`. `NewsService`, en
+`src/app/services/news.service.ts`, lee el JSON mediante `HttpClient` y ofrece:
+
+- `obtenerNoticias()` y `obtenerNoticiaPorId(id)`.
+- `obtenerDestacadas()`.
+- `buscarNoticias(titulo)`, sin distinguir mayúsculas ni tildes.
+- `filtrarPorCategoria(categoria, titulo)`, con búsqueda y categoría combinables.
+
+El servicio comparte la carga entre consumidores, rechaza datos incompletos o
+IDs duplicados y devuelve un error amigable cuando falla la carga. Una nueva
+suscripción permite reintentar. La URL relativa respeta el despliegue en GitHub
+Pages. La portada, el listado y el detalle ya consumen este servicio.
+La persistencia local corresponde a la siguiente etapa.
+
+Las seis fotografías de `public/images/news/` proceden del frame
+[Noticias desktop de NEXT Noticias en Figma](https://www.figma.com/design/iLZrtS6bVlLgCuEsXHtKJL/NEXT-Noticias?node-id=68-10).
+Sus posiciones son: computación cuántica, educación y turismo en la primera fila;
+negocios, innovación médica y energía en la segunda. Los datos adicionales
+reutilizan esas fotografías como ilustraciones de ejemplo.
+
+Para verificar la lógica y la estructura actual: `npm test -- --watch=false`.
+
+## Secciones de noticias de la portada
+
+La portada incluye tres noticias destacadas y cuatro noticias recientes, basadas en
+la referencia `next-noticias-home.png`. Las cuadrículas se adaptan a una columna
+en pantallas de hasta 720 px.
+
+Las fotografías ahora son imágenes individuales del JSON. Destacadas, últimas
+noticias y hero abren su artículo mediante Angular Router; las categorías abren
+el listado filtrado. La captura `public/images/news-reference.png` se conserva
+como referencia histórica y ya no se utiliza para mostrar fotografías.
+
+## Navegación y consulta — segunda etapa de la Entrega 2
+
+- `/`: portada dinámica, tres destacadas y cuatro noticias ordenadas por fecha.
+- `/noticias`: búsqueda por título, filtro por categoría y paginación de seis
+  tarjetas. `q`, `categoria` y `pagina` se conservan en la URL para compartir
+  búsquedas y restaurarlas al volver del detalle.
+- `/noticias/:id`: título, categoría, autor, fecha, fotografía, contenido,
+  regreso al listado y noticias relacionadas de la misma categoría.
+- Las rutas o noticias inexistentes muestran un mensaje amigable. Los fallos
+  de carga permiten reintentar y las búsquedas vacías permiten limpiar filtros.
+
+`NewsCard` se reutiliza en portada, listado y noticias relacionadas. El listado
+y el detalle siguen los frames `68:10` y `68:181` del archivo de Figma; el
+contenido e imágenes cambian según la noticia consultada. Las fechas se muestran
+en español. Las vistas se han verificado en escritorio, tablet y móvil.
+
+Los controles de favoritos y los accesos a Favoritos, Administración y Contacto
+están deshabilitados hasta implementar esas etapas. El inicio de sesión no está
+incluido en el alcance de la entrega. No hay backend ni persistencia local aún.
+
+En desarrollo, `ng serve` permite abrir directamente las rutas. En alojamiento
+estático, el servidor debe devolver `index.html` para rutas de Angular. GitHub
+Pages requiere configurar esa recuperación antes de garantizar recargas o
+enlaces directos como `/Next_Noticias/noticias/2`; esta etapa no modifica el
+workflow de despliegue.
+
+La versión actual de Angular requiere Node.js 22.22.3+, 24.15.0+ o 26+.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
 
 ## Development server

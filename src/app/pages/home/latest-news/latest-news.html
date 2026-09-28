@@ -1,0 +1,28 @@
+<section class="latest-news" aria-labelledby="latest-news-title">
+  <h2 id="latest-news-title">Últimas noticias</h2>
+  <div class="latest-news__grid">
+    @for (article of articles(); track article.id) {
+      <article class="latest-news__card">
+        <img
+          class="news-photo"
+          [src]="article.imagen"
+          alt=""
+          loading="lazy"
+          width="80"
+          height="80"
+        />
+        <div class="latest-news__content">
+          <span class="latest-news__category">{{ article.categoria }}</span>
+          <h3>
+            <a [routerLink]="['/noticias', article.id]">{{ article.titulo }}</a>
+          </h3>
+          <time class="latest-news__published" [attr.datetime]="article.fecha">{{
+            article.fecha | date: 'dd MMM yyyy'
+          }}</time>
+        </div>
+      </article>
+    } @empty {
+      <p>No hay noticias por el momento.</p>
+    }
+  </div>
+</section>

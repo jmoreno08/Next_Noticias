@@ -3,23 +3,23 @@
     <div class="hero__text">
       <h1 class="hero__title">La actualidad que te conecta</h1>
       <p class="hero__description">
-        Descubre noticias relevantes de tecnología, educación, turismo, innovación y mucho más. Todo en un solo lugar.
+        Descubre noticias relevantes de tecnología, educación, turismo, innovación y mucho más. Todo
+        en un solo lugar.
       </p>
     </div>
-    <button type="button" class="hero__cta" (click)="onExploreClick()">
-      Explorar noticias →
-    </button>
+    <a class="hero__cta" routerLink="/noticias">Explorar noticias →</a>
   </div>
-
-  <div class="hero__featured">
-    <img class="hero__image" src="images/hero-main-image.png" alt="" />
-    <article class="hero__card">
-      <span class="hero__card-label">{{ featured.label }}</span>
-      <h2 class="hero__card-title">{{ featured.title }}</h2>
-      <p class="hero__card-description">{{ featured.description }}</p>
-      <button type="button" class="hero__card-link" (click)="onReadFeaturedClick()">
-        Leer artículo completo →
-      </button>
-    </article>
-  </div>
+  @if (featured(); as article) {
+    <div class="hero__featured">
+      <img class="hero__image" [src]="article.imagen" alt="" />
+      <article class="hero__card">
+        <span class="hero__card-label">Destacado del Día</span>
+        <h2 class="hero__card-title">{{ article.titulo }}</h2>
+        <p class="hero__card-description">{{ article.descripcion }}</p>
+        <a class="hero__card-link" [routerLink]="['/noticias', article.id]"
+          >Leer artículo completo →</a
+        >
+      </article>
+    </div>
+  }
 </section>

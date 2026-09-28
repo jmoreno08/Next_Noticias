@@ -1,24 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 interface NavLink {
   label: string;
-  isActive?: boolean;
+  path?: string;
 }
 
 @Component({
   selector: 'app-header',
   standalone: true,
+  imports: [RouterLink, RouterLinkActive],
   styleUrl: './header.css',
   templateUrl: './header.html',
 })
 export class Header {
+  private readonly router = inject(Router);
   protected readonly navLinks: NavLink[] = [
-    { label: 'Inicio', isActive: true },
-    { label: 'Noticias' },
-    { label: 'Categorías' },
+    { label: 'Inicio', path: '/' },
+    { label: 'Noticias', path: '/noticias' },
     { label: 'Favoritos' },
+    { label: 'Administración' },
     { label: 'Contacto' },
-    { label: 'Acerca de' },
   ];
 
   protected isMenuOpen = false;
@@ -27,13 +29,13 @@ export class Header {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  onNavLinkClick(link: NavLink): void {
-    console.info(`Navegación pendiente de implementar: ${link.label}`);
+  onNavLinkClick(): void {
     this.isMenuOpen = false;
   }
 
   onSearchClick(): void {
-    console.info('Búsqueda pendiente de implementar');
+    this.isMenuOpen = false;
+    void this.router.navigate(['/noticias']);
   }
 
   onLoginClick(): void {

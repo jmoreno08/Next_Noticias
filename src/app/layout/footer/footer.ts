@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface FooterLink {
   label: string;
+  path?: string;
 }
 
 interface SocialLink {
@@ -12,6 +14,7 @@ interface SocialLink {
 @Component({
   selector: 'app-footer',
   standalone: true,
+  imports: [RouterLink],
   styleUrl: './footer.css',
   templateUrl: './footer.html',
 })
@@ -19,9 +22,9 @@ export class Footer {
   protected readonly currentYear = new Date().getFullYear();
 
   protected readonly footerLinks: FooterLink[] = [
-    { label: 'Inicio' },
-    { label: 'Noticias' },
-    { label: 'Categorías' },
+    { label: 'Inicio', path: '/' },
+    { label: 'Noticias', path: '/noticias' },
+    { label: 'Categorías', path: '/noticias' },
     { label: 'Contacto' },
     { label: 'Acerca de' },
   ];
@@ -32,10 +35,6 @@ export class Footer {
     { name: 'Instagram', icon: 'icons/social-circle-instagram.svg' },
     { name: 'LinkedIn', icon: 'icons/social-circle-linkedin.svg' },
   ];
-
-  onFooterLinkClick(link: FooterLink): void {
-    console.info(`Navegación pendiente de implementar: ${link.label}`);
-  }
 
   onSocialLinkClick(social: SocialLink): void {
     console.info(`Enlace social pendiente de implementar: ${social.name}`);

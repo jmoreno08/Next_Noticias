@@ -13,13 +13,13 @@
     <div class="footer__links">
       <span class="footer__heading">Enlaces</span>
       @for (link of footerLinks; track link.label) {
-        <a
-          class="footer__link"
-          href="#"
-          (click)="$event.preventDefault(); onFooterLinkClick(link)"
-        >
-          {{ link.label }}
-        </a>
+        @if (link.path) {
+          <a class="footer__link" [routerLink]="link.path">
+            {{ link.label }}
+          </a>
+        } @else {
+          <span class="footer__link" aria-disabled="true">{{ link.label }}</span>
+        }
       }
     </div>
 
@@ -43,11 +43,17 @@
   <div class="footer__divider"></div>
 
   <div class="footer__bottom">
-    <span class="footer__copyright">© {{ currentYear }} NEXT Noticias. Todos los derechos reservados.</span>
+    <span class="footer__copyright"
+      >© {{ currentYear }} NEXT Noticias. Todos los derechos reservados.</span
+    >
     <span class="footer__legal">
-      <a href="#" (click)="$event.preventDefault(); onLegalLinkClick('Política de Privacidad')">Política de Privacidad</a>
+      <a href="#" (click)="$event.preventDefault(); onLegalLinkClick('Política de Privacidad')"
+        >Política de Privacidad</a
+      >
       &nbsp;•&nbsp;
-      <a href="#" (click)="$event.preventDefault(); onLegalLinkClick('Términos de Servicio')">Términos de Servicio</a>
+      <a href="#" (click)="$event.preventDefault(); onLegalLinkClick('Términos de Servicio')"
+        >Términos de Servicio</a
+      >
     </span>
   </div>
 </footer>

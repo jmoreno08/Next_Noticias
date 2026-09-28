@@ -1,0 +1,119 @@
+:host {
+  display: block;
+}
+.news-list {
+  padding: 48px 80px 64px;
+  color: #0f172a;
+  min-height: 50vh;
+}
+.news-list__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+h1 {
+  font-size: 28px;
+  margin: 0;
+}
+.news-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 320px;
+  padding: 10px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  box-sizing: border-box;
+}
+.news-search img {
+  flex-shrink: 0;
+}
+input {
+  background: transparent;
+  border: 0;
+  min-width: 0;
+  width: 100%;
+  font: inherit;
+  font-size: 14px;
+  color: #0f172a;
+}
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+button {
+  font: inherit;
+  font-size: 13px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #0f172a;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.categories button {
+  border-radius: 100px;
+}
+button.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 64px;
+}
+.pagination button {
+  padding: 10px 14px;
+}
+.state {
+  padding: 48px 24px;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 16px;
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 4px;
+}
+@media (max-width: 1100px) {
+  .news-list {
+    padding: 40px 24px;
+  }
+  .news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .news-list__heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .news-search {
+    width: 100%;
+  }
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+  h1 {
+    font-size: 26px;
+  }
+}

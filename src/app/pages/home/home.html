@@ -1,2 +1,15 @@
-<app-hero />
-<app-categories />
+<main>
+  @if (vm$ | async; as vm) {
+    <app-hero [featured]="vm.hero" /><app-categories />
+    @if (vm.loading) {
+      <p class="home-state" role="status">Cargando noticias…</p>
+    } @else if (vm.error) {
+      <div class="home-state" role="alert">
+        <p>{{ vm.error }}</p>
+        <button type="button" (click)="retry()">Reintentar</button>
+      </div>
+    } @else {
+      <app-featured-news [articles]="vm.featured" /><app-latest-news [articles]="vm.latest" />
+    }
+  }
+</main>

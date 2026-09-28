@@ -1,0 +1,13 @@
+<section class="featured-news" aria-labelledby="featured-news-title">
+  <div class="featured-news__heading">
+    <h2 id="featured-news-title">Noticias destacadas</h2>
+    <a routerLink="/noticias">Ver todas →</a>
+  </div>
+  <div class="featured-news__grid">
+    @for (article of articles(); track article.id) {
+      <app-news-card [article]="article" />
+    } @empty {
+      <p>No hay noticias destacadas por el momento.</p>
+    }
+  </div>
+</section>
