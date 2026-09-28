@@ -55,8 +55,8 @@ y el detalle siguen los frames `68:10` y `68:181` del archivo de Figma; el
 contenido e imágenes cambian según la noticia consultada. Las fechas se muestran
 en español. Las vistas se han verificado en escritorio, tablet y móvil.
 
-Los accesos a Administración y Contacto están deshabilitados hasta implementar
-esas etapas. El inicio de sesión no está incluido en el alcance de la entrega.
+El acceso a Administración sigue pendiente de implementación.
+El inicio de sesión no está incluido en el alcance de la entrega.
 No hay backend.
 
 ## Favoritos — tercera etapa de la Entrega 2
@@ -78,6 +78,23 @@ comparten entre dispositivos ni entre localhost y el sitio publicado.
 Validación de esta etapa: 20 pruebas unitarias/de integración, compilación de
 producción y comprobación en navegador de guardado, recarga, eliminación,
 teclado y diseños a 1440, 768, 390 y 320 px.
+
+## Contacto — cuarta etapa de la Entrega 2
+
+La ruta `/contacto`, disponible en header y footer, sigue el frame `68:426` de
+Figma. Utiliza Reactive Forms con campos obligatorios: nombre (mínimo 3
+caracteres), correo válido, asunto y mensaje (mínimo 10 caracteres). Los textos
+compuestos solo de espacios no son válidos. Los errores aparecen al tocar un
+campo o intentar enviar; un envío inválido enfoca el primer campo con error.
+
+Un envío válido muestra «Tu mensaje ha sido enviado correctamente.» y restablece
+el formulario. Es una simulación académica indicada en pantalla: no se hacen
+peticiones de envío ni se almacenan datos personales. Los datos del panel de
+contacto son los ejemplos del diseño, no canales verificados de atención.
+
+Validación acumulada: 23 pruebas aprobadas, compilación de producción y revisión
+de contacto en navegador a 1440, 768, 390 y 320 px, incluidos estados de error,
+confirmación, restablecimiento y carga de iconos.
 
 En desarrollo, `ng serve` permite abrir directamente las rutas. En alojamiento
 estático, el servidor debe devolver `index.html` para rutas de Angular. GitHub

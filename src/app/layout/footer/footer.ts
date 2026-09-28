@@ -25,7 +25,7 @@ export class Footer {
     { label: 'Inicio', path: '/' },
     { label: 'Noticias', path: '/noticias' },
     { label: 'Categorías', path: '/noticias' },
-    { label: 'Contacto' },
+    { label: 'Contacto', path: '/contacto' },
     { label: 'Acerca de' },
   ];
 

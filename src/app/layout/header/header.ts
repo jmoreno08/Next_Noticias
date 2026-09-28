@@ -20,7 +20,7 @@ export class Header {
     { label: 'Noticias', path: '/noticias' },
     { label: 'Favoritos', path: '/favoritos' },
     { label: 'Administración' },
-    { label: 'Contacto' },
+    { label: 'Contacto', path: '/contacto' },
   ];
 
   protected isMenuOpen = false;
