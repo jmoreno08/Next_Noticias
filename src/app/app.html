@@ -1,4 +1,7 @@
 <app-header />
+@if (favorites.error()) {
+  <p class="storage-error" role="alert">{{ favorites.error() }}</p>
+}
 
 <router-outlet />
 

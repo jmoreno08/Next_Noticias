@@ -1,0 +1,31 @@
+<main class="favorites">
+  <h1>Mis noticias favoritas</h1>
+  @if (vm$ | async; as vm) {
+    @if (vm.loading) {
+      <p role="status">Cargando favoritos…</p>
+    } @else if (vm.error) {
+      <div role="alert">
+        <p>{{ vm.error }}</p>
+        <button type="button" (click)="retry()">Reintentar</button>
+      </div>
+    } @else {
+      <p class="count" role="status">
+        {{ vm.articles.length }}
+        {{ vm.articles.length === 1 ? 'noticia guardada' : 'noticias guardadas' }}
+      </p>
+      @if (vm.articles.length) {
+        <div class="favorites__grid">
+          @for (article of vm.articles; track article.id) {
+            <app-news-card [article]="article" />
+          }
+        </div>
+      } @else {
+        <section class="empty">
+          <h2>Aún no tienes noticias guardadas.</h2>
+          <p>Explora las noticias y guarda las que quieras leer más tarde.</p>
+          <a routerLink="/noticias">Explorar noticias →</a>
+        </section>
+      }
+    }
+  }
+</main>

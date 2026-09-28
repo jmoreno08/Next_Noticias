@@ -39,15 +39,6 @@
   font-size: 12px;
   font-weight: 700;
 }
-.news-card__favorite {
-  border: 0;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  background: #f8fafc;
-}
 h3 {
   margin: 0;
   font-size: 18px;

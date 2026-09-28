@@ -18,7 +18,7 @@ El servicio comparte la carga entre consumidores, rechaza datos incompletos o
 IDs duplicados y devuelve un error amigable cuando falla la carga. Una nueva
 suscripción permite reintentar. La URL relativa respeta el despliegue en GitHub
 Pages. La portada, el listado y el detalle ya consumen este servicio.
-La persistencia local corresponde a la siguiente etapa.
+Los favoritos se guardan localmente mediante `FavoritesService`.
 
 Las seis fotografías de `public/images/news/` proceden del frame
 [Noticias desktop de NEXT Noticias en Figma](https://www.figma.com/design/iLZrtS6bVlLgCuEsXHtKJL/NEXT-Noticias?node-id=68-10).
@@ -55,9 +55,29 @@ y el detalle siguen los frames `68:10` y `68:181` del archivo de Figma; el
 contenido e imágenes cambian según la noticia consultada. Las fechas se muestran
 en español. Las vistas se han verificado en escritorio, tablet y móvil.
 
-Los controles de favoritos y los accesos a Favoritos, Administración y Contacto
-están deshabilitados hasta implementar esas etapas. El inicio de sesión no está
-incluido en el alcance de la entrega. No hay backend ni persistencia local aún.
+Los accesos a Administración y Contacto están deshabilitados hasta implementar
+esas etapas. El inicio de sesión no está incluido en el alcance de la entrega.
+No hay backend.
+
+## Favoritos — tercera etapa de la Entrega 2
+
+- Guardar y quitar noticias desde las tarjetas y el detalle.
+- Página `/favoritos`, con contador y el estado vacío «Aún no tienes noticias guardadas.».
+- Persistencia en `localStorage` bajo la clave `next-noticias:favorites`.
+  Solo se almacenan IDs; la información se obtiene del servicio de noticias.
+- Se evitan duplicados, se descartan IDs inválidos y no se muestran noticias que
+  ya no existan. Los botones comparten el estado durante la navegación.
+- Los errores de lectura o escritura muestran un mensaje. Si una escritura
+  falla, el estado anterior se conserva para no simular un guardado exitoso.
+
+`FavoriteButton` se reutiliza en tarjetas y detalle con nombre accesible y
+`aria-pressed`. El diseño sigue el frame `68:324` de Figma y reutiliza las fotos
+de cada noticia. Los favoritos pertenecen al navegador y origen actual: no se
+comparten entre dispositivos ni entre localhost y el sitio publicado.
+
+Validación de esta etapa: 20 pruebas unitarias/de integración, compilación de
+producción y comprobación en navegador de guardado, recarga, eliminación,
+teclado y diseños a 1440, 768, 390 y 320 px.
 
 En desarrollo, `ng serve` permite abrir directamente las rutas. En alojamiento
 estático, el servidor debe devolver `index.html` para rutas de Angular. GitHub
