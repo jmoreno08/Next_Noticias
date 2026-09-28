@@ -1,5 +1,33 @@
 # NextNoticias
 
+## Datos de noticias — primera etapa de la Entrega 2
+
+`public/data/noticias.json` contiene diez noticias de demostración con ID,
+título, categoría, descripción, contenido, imagen, fecha, autor y destacado.
+Los contenidos son ejemplos académicos, no información periodística verificada.
+
+El modelo compartido está en `src/app/models/news.ts`. `NewsService`, en
+`src/app/services/news.service.ts`, lee el JSON mediante `HttpClient` y ofrece:
+
+- `obtenerNoticias()` y `obtenerNoticiaPorId(id)`.
+- `obtenerDestacadas()`.
+- `buscarNoticias(titulo)`, sin distinguir mayúsculas ni tildes.
+- `filtrarPorCategoria(categoria, titulo)`, con búsqueda y categoría combinables.
+
+El servicio comparte la carga entre consumidores, rechaza datos incompletos o
+IDs duplicados y devuelve un error amigable cuando falla la carga. Una nueva
+suscripción permite reintentar. La URL relativa respeta el despliegue en GitHub
+Pages. La integración en las vistas y la persistencia local corresponden a las
+siguientes etapas; la portada todavía usa sus arreglos originales.
+
+Las seis fotografías de `public/images/news/` proceden del frame
+[Noticias desktop de NEXT Noticias en Figma](https://www.figma.com/design/iLZrtS6bVlLgCuEsXHtKJL/NEXT-Noticias?node-id=68-10).
+Sus posiciones son: computación cuántica, educación y turismo en la primera fila;
+negocios, innovación médica y energía en la segunda. Los datos adicionales
+reutilizan esas fotografías como ilustraciones de ejemplo.
+
+Para verificar la lógica y la estructura actual: `npm test -- --watch=false`.
+
 ## Secciones de noticias de la portada
 
 La portada incluye tres noticias destacadas y cuatro noticias recientes, basadas en
