@@ -55,7 +55,7 @@ y el detalle siguen los frames `68:10` y `68:181` del archivo de Figma; el
 contenido e imágenes cambian según la noticia consultada. Las fechas se muestran
 en español. Las vistas se han verificado en escritorio, tablet y móvil.
 
-El acceso a Administración sigue pendiente de implementación.
+Administración está disponible en `/administracion` para crear y eliminar noticias locales.
 El inicio de sesión no está incluido en el alcance de la entrega.
 No hay backend.
 
@@ -92,7 +92,7 @@ el formulario. Es una simulación académica indicada en pantalla: no se hacen
 peticiones de envío ni se almacenan datos personales. Los datos del panel de
 contacto son los ejemplos del diseño, no canales verificados de atención.
 
-Validación acumulada: 23 pruebas aprobadas, compilación de producción y revisión
+Validación acumulada: 27 pruebas aprobadas, compilación de producción y revisión
 de contacto en navegador a 1440, 768, 390 y 320 px, incluidos estados de error,
 confirmación, restablecimiento y carga de iconos.
 
@@ -161,3 +161,26 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Administración y mini CRUD (etapa 5)
+
+El panel `/administracion` sigue el diseño de administración de Figma. Permite
+crear noticias con título, categoría, descripción, contenido, imagen HTTPS,
+autor, fecha válida y opción de destacada. Los campos obligatorios muestran
+mensajes de validación. El listado permite abrir el detalle y eliminar únicamente
+noticias creadas localmente; no permite modificar ni borrar el JSON original.
+
+`LocalNewsService` guarda los artículos en `next-noticias:local-news` y conserva
+el estado anterior si falla la escritura. Valida los datos recuperados y comunica
+los errores de almacenamiento. `NewsService` combina ese estado con el JSON para
+actualizar portada, listado, búsqueda, filtros, detalle y favoritos. Los IDs se
+generan comprobando los existentes en ambos orígenes.
+
+Los datos pertenecen a este navegador y origen, no se sincronizan entre equipos.
+Las URLs de imágenes deben ser HTTPS y apuntar a imágenes accesibles públicamente.
+Este panel académico no incluye autenticación ni backend.
+
+Verificado en navegador: validación de obligatorios, creación, recarga, búsqueda,
+detalle, eliminación y persistencia de la eliminación; tamaños de 1440, 768, 390
+y 320 px sin desbordamiento horizontal del documento ni errores de ejecución.
+En móvil la tabla tiene desplazamiento horizontal dentro de su contenedor.

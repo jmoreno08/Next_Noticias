@@ -19,7 +19,7 @@ export class Header {
     { label: 'Inicio', path: '/' },
     { label: 'Noticias', path: '/noticias' },
     { label: 'Favoritos', path: '/favoritos' },
-    { label: 'Administración' },
+    { label: 'Administración', path: '/administracion' },
     { label: 'Contacto', path: '/contacto' },
   ];
 
