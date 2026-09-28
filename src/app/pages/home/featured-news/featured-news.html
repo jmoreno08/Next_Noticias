@@ -1,54 +1,13 @@
 <section class="featured-news" aria-labelledby="featured-news-title">
   <div class="featured-news__heading">
     <h2 id="featured-news-title">Noticias destacadas</h2>
-    <button class="text-link" type="button" (click)="onViewAllClick()">
-      Ver todas <span aria-hidden="true">➜</span>
-    </button>
+    <a routerLink="/noticias">Ver todas →</a>
   </div>
   <div class="featured-news__grid">
-    @for (article of articles; track article.title) {
-      <article class="news-card">
-        <div
-          [class]="'news-photo news-photo--' + article.image"
-          style="background-image: url('images/news-reference.png')"
-          role="img"
-          [attr.aria-label]="article.title"
-        ></div>
-        <div class="news-card__body">
-          <div class="news-card__meta">
-            <span class="news-card__category">{{ article.category }}</span>
-            <button
-              class="news-card__favorite"
-              type="button"
-              [attr.aria-label]="'Guardar en favoritos: ' + article.title"
-              (click)="onFavoriteClick(article.title)"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                aria-hidden="true"
-              >
-                <path
-                  d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"
-                />
-                <path d="m3 3 18 18" />
-              </svg>
-            </button>
-          </div>
-          <h3>{{ article.title }}</h3>
-          <p>{{ article.description }}</p>
-          <button
-            class="text-link news-card__link"
-            type="button"
-            [attr.aria-label]="'Ver más: ' + article.title"
-            (click)="onArticleClick(article.title)"
-          >
-            Ver más <span aria-hidden="true">➜</span>
-          </button>
-        </div>
-      </article>
+    @for (article of articles(); track article.id) {
+      <app-news-card [article]="article" />
+    } @empty {
+      <p>No hay noticias destacadas por el momento.</p>
     }
   </div>
 </section>

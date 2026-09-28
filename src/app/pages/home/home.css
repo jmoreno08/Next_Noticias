@@ -1,0 +1,13 @@
+.home-state {
+  padding: 40px 24px;
+  text-align: center;
+  color: #64748b;
+}
+.home-state button {
+  padding: 12px 24px;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  background: white;
+  color: #2563eb;
+  cursor: pointer;
+}

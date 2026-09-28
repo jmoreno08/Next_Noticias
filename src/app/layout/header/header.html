@@ -18,14 +18,25 @@
 
   <nav class="header__nav" [class.header__nav--open]="isMenuOpen">
     @for (link of navLinks; track link.label) {
-      <a
-        class="header__nav-link"
-        [class.header__nav-link--active]="link.isActive"
-        href="#"
-        (click)="$event.preventDefault(); onNavLinkClick(link)"
-      >
-        {{ link.label }}
-      </a>
+      @if (link.path) {
+        <a
+          class="header__nav-link"
+          [routerLink]="link.path"
+          routerLinkActive="header__nav-link--active"
+          [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+          ariaCurrentWhenActive="page"
+          (click)="onNavLinkClick()"
+        >
+          {{ link.label }}
+        </a>
+      } @else {
+        <span
+          class="header__nav-link header__nav-link--pending"
+          aria-disabled="true"
+          title="Disponible próximamente"
+          >{{ link.label }}</span
+        >
+      }
     }
   </nav>
 

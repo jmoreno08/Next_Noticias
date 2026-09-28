@@ -1,0 +1,74 @@
+<main class="detail">
+  <nav class="breadcrumb" aria-label="Ruta de navegación">
+    <a routerLink="/">Inicio</a><span aria-hidden="true">›</span
+    ><a routerLink="/noticias" queryParamsHandling="preserve">Noticias</a
+    ><span aria-hidden="true">›</span><span aria-current="page">Artículo</span>
+  </nav>
+  @if (vm$ | async; as vm) {
+    @if (vm.loading) {
+      <p role="status">Cargando noticia…</p>
+    } @else if (vm.error) {
+      <div role="alert">
+        <p>{{ vm.error }}</p>
+        <button type="button" data-retry (click)="retry()">Reintentar</button>
+      </div>
+    } @else if (vm.article; as article) {
+      <article>
+        <div class="detail__top">
+          <span class="badge">{{ article.categoria }}</span
+          ><button class="save" type="button" disabled title="Favoritos disponible próximamente">
+            <img src="icons/heart-detail.svg" alt="" /> Guardar artículo
+          </button>
+        </div>
+        <h1>{{ article.titulo }}</h1>
+        <div class="byline">
+          <span>Por {{ article.autor }}</span
+          ><span aria-hidden="true">·</span
+          ><time [attr.datetime]="article.fecha">{{ article.fecha | date: 'dd MMM yyyy' }}</time>
+        </div>
+        <img
+          class="detail__image"
+          [src]="article.imagen"
+          [alt]="article.titulo"
+          width="1280"
+          height="480"
+        />
+        <div class="detail__body">
+          <div class="content">
+            @for (paragraph of article.contenido.split('\n\n'); track $index) {
+              <p>{{ paragraph }}</p>
+            }
+            <a class="back" routerLink="/noticias" queryParamsHandling="preserve"
+              >← Volver a noticias</a
+            >
+          </div>
+          <aside>
+            <h2>Sobre este artículo</h2>
+            <p>{{ article.descripcion }}</p>
+            <hr />
+            <h3>Categoría</h3>
+            <a [routerLink]="['/noticias']" [queryParams]="{ categoria: article.categoria }">{{
+              article.categoria
+            }}</a>
+          </aside>
+        </div>
+      </article>
+      @if (vm.related.length) {
+        <section class="related">
+          <h2>Noticias relacionadas</h2>
+          <div class="related__grid">
+            @for (article of vm.related; track article.id) {
+              <app-news-card [article]="article" />
+            }
+          </div>
+        </section>
+      }
+    } @else {
+      <section class="missing">
+        <h1>No encontramos esta noticia</h1>
+        <p>Puede que el enlace sea incorrecto o que la noticia ya no esté disponible.</p>
+        <a class="back" routerLink="/noticias">Volver a noticias</a>
+      </section>
+    }
+  }
+</main>

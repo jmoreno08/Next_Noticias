@@ -22,101 +22,27 @@ h2 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
-.news-card {
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  overflow: hidden;
-  background: white;
-  display: flex;
-  flex-direction: column;
-}
-.news-card .news-photo {
-  aspect-ratio: 348 / 185;
+a {
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
   flex-shrink: 0;
 }
-.news-card__body {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  flex: 1;
-}
-.news-card__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.news-card__category {
-  color: #2563eb;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 700;
-}
-.news-card__favorite {
-  border: 0;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  background: #f8fafc;
-  color: #64748b;
-  cursor: pointer;
-}
-.news-card__favorite svg {
-  width: 16px;
-  height: 16px;
-}
-h3 {
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.45;
-}
-p {
-  margin: 0;
-  color: #64748b;
-  font-size: 14px;
-  line-height: 1.5;
-}
-.text-link {
-  border: 0;
-  padding: 0;
-  background: transparent;
-  color: #2563eb;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: left;
-}
-.text-link span {
-  margin-left: 4px;
-}
-.news-card__link {
-  margin-top: auto;
-  padding-top: 10px;
-  align-self: flex-start;
-}
-button:hover {
-  color: #1d4ed8;
-}
-.text-link:hover {
+a:hover {
   text-decoration: underline;
 }
-button:focus-visible {
+a:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 4px;
 }
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .featured-news {
     padding: 40px 24px;
   }
   .featured-news__grid {
     gap: 16px;
-  }
-  .news-card__body {
-    padding: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (max-width: 720px) {
@@ -128,8 +54,5 @@ button:focus-visible {
   }
   .featured-news__heading {
     gap: 16px;
-  }
-  .featured-news__heading .text-link {
-    flex-shrink: 0;
   }
 }

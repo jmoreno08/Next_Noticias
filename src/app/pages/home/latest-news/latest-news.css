@@ -26,6 +26,7 @@ h2 {
   background: #fff;
 }
 .latest-news__card .news-photo {
+  object-fit: cover;
   width: 80px;
   height: 80px;
   flex-shrink: 0;
@@ -48,7 +49,8 @@ h3 {
   line-height: 1.5;
   margin: 0;
 }
-button {
+a {
+  text-decoration: none;
   background: none;
   border: 0;
   padding: 0;
@@ -57,11 +59,11 @@ button {
   text-align: left;
   cursor: pointer;
 }
-button:hover {
+a:hover {
   color: #2563eb;
   text-decoration: underline;
 }
-button:focus-visible {
+a:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 4px;
 }

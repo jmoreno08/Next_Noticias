@@ -1,0 +1,75 @@
+<main class="news-list">
+  @if (vm$ | async; as vm) {
+    <div class="news-list__heading">
+      <h1>Últimas noticias</h1>
+      <label class="news-search"
+        ><img src="icons/news-search.svg" alt="" /><input
+          #searchInput
+          type="search"
+          aria-label="Buscar noticias por título"
+          placeholder="Buscar noticias..."
+          [value]="vm.query"
+          (input)="search(searchInput.value)"
+      /></label>
+    </div>
+    <div class="categories" role="group" aria-label="Filtrar por categoría">
+      <button
+        type="button"
+        [class.active]="!vm.category"
+        [attr.aria-pressed]="!vm.category"
+        (click)="category('')"
+      >
+        Todas
+      </button>
+      @for (item of vm.categories; track item) {
+        <button
+          type="button"
+          [class.active]="vm.category === item"
+          [attr.aria-pressed]="vm.category === item"
+          (click)="category(item)"
+        >
+          {{ item }}
+        </button>
+      }
+    </div>
+    @if (vm.loading) {
+      <p role="status">Cargando noticias…</p>
+    } @else if (vm.error) {
+      <div class="state" role="alert">
+        <p>{{ vm.error }}</p>
+        <button type="button" data-retry (click)="retry()">Reintentar</button>
+      </div>
+    } @else if (!vm.total) {
+      <div class="state" role="status">
+        <h2>No encontramos noticias</h2>
+        <p>Prueba con otro título o categoría.</p>
+        <button type="button" (click)="clear()">Limpiar filtros</button>
+      </div>
+    } @else {
+      <div class="news-grid">
+        @for (article of vm.articles; track article.id) {
+          <app-news-card [article]="article" />
+        }
+      </div>
+      <nav class="pagination" aria-label="Páginas de noticias">
+        <button type="button" [disabled]="vm.page === 1" (click)="page(vm.page - 1)">
+          Anterior
+        </button>
+        @for (number of vm.pages; track number) {
+          <button
+            type="button"
+            [class.active]="number === vm.page"
+            [attr.aria-current]="number === vm.page ? 'page' : null"
+            [attr.aria-label]="'Página ' + number"
+            (click)="page(number)"
+          >
+            {{ number }}
+          </button>
+        }
+        <button type="button" [disabled]="vm.page === vm.pages.length" (click)="page(vm.page + 1)">
+          Siguiente
+        </button>
+      </nav>
+    }
+  }
+</main>

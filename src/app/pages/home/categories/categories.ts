@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Category {
   label: string;
@@ -13,15 +14,16 @@ interface Category {
   templateUrl: './categories.html',
 })
 export class Categories {
+  private readonly router = inject(Router);
   protected readonly categories: Category[] = [
     { label: 'Tecnología', icon: 'icons/cpu.svg', active: true },
     { label: 'Educación', icon: 'icons/graduation-cap.svg' },
     { label: 'Turismo', icon: 'icons/globe.svg' },
-    { label: 'Actualidad', icon: 'icons/newspaper.svg' },
-    { label: 'Innovación', icon: 'icons/lightbulb.svg' },
+    { label: 'Negocios', icon: 'icons/newspaper.svg' },
+    { label: 'Ciencia e Innovación', icon: 'icons/lightbulb.svg' },
   ];
 
   onCategoryClick(category: Category): void {
-    console.info(`Filtro de categoría pendiente de implementar: ${category.label}`);
+    void this.router.navigate(['/noticias'], { queryParams: { categoria: category.label } });
   }
 }
