@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable, shareReplay, throwError } from 'rxjs';
+import { catchError, combineLatest, map, Observable, shareReplay, throwError } from 'rxjs';
+import { LocalNewsService } from './local-news.service';
 import { News } from '../models/news';
 
 function normalize(value: string): string {
@@ -39,7 +40,7 @@ export class NewsService {
 
   // A relative URL also works when the app is hosted under /Next_Noticias/.
   // Cache successful loads; shareReplay resets after an error so callers can retry.
-  private readonly news$ = this.http.get<unknown>('data/noticias.json').pipe(
+  private readonly seed$ = this.http.get<unknown>('data/noticias.json').pipe(
     map((data) => {
       if (
         !Array.isArray(data) ||
@@ -54,6 +55,13 @@ export class NewsService {
       throwError(() => new Error('No pudimos cargar las noticias. Inténtalo de nuevo.')),
     ),
     shareReplay({ bufferSize: 1, refCount: false }),
+  );
+
+  private readonly news$ = combineLatest([this.seed$, inject(LocalNewsService).articles$]).pipe(
+    map(([seed, local]) => [
+      ...local.filter((article) => !seed.some((item) => item.id === article.id)),
+      ...seed,
+    ]),
   );
 
   obtenerNoticias(): Observable<News[]> {

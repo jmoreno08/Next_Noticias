@@ -4,8 +4,14 @@ import { FavoritesService } from './favorites.service';
 const key = 'next-noticias:favorites';
 
 describe('FavoritesService', () => {
-  beforeEach(() => { localStorage.removeItem(key); TestBed.configureTestingModule({}); });
-  afterEach(() => { vi.restoreAllMocks(); localStorage.removeItem(key); });
+  beforeEach(() => {
+    localStorage.removeItem(key);
+    TestBed.configureTestingModule({});
+  });
+  afterEach(() => {
+    vi.restoreAllMocks();
+    localStorage.removeItem(key);
+  });
 
   it('adds once, persists and removes favorites', () => {
     const service = TestBed.inject(FavoritesService);
@@ -48,14 +54,18 @@ describe('FavoritesService', () => {
   it('does not claim a change succeeded if persistence fails', () => {
     localStorage.setItem(key, '[2]');
     const service = TestBed.inject(FavoritesService);
-    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('Quota exceeded'); });
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('Quota exceeded');
+    });
     service.remove(2);
     expect(service.ids()).toEqual([2]);
     expect(service.error()).toContain('No pudimos guardar');
   });
 
   it('handles unavailable storage without crashing', () => {
-    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new Error('Blocked'); });
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new Error('Blocked');
+    });
     const service = TestBed.inject(FavoritesService);
     expect(service.ids()).toEqual([]);
     expect(service.error()).toContain('No pudimos leer');

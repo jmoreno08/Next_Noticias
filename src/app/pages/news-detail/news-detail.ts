@@ -1,14 +1,16 @@
+import { NewsImage } from '../../shared/news-image';
 import { Component, inject } from '@angular/core';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BehaviorSubject, catchError, combineLatest, map, of, startWith, switchMap } from 'rxjs';
 import { NewsService } from '../../services/news.service';
 import { NewsCard } from '../../shared/news-card/news-card';
+import { FavoriteButton } from '../../shared/favorite-button/favorite-button';
 
 @Component({
   selector: 'app-news-detail',
   standalone: true,
-  imports: [AsyncPipe, DatePipe, RouterLink, NewsCard],
+  imports: [NewsImage, AsyncPipe, DatePipe, RouterLink, NewsCard, FavoriteButton],
   templateUrl: './news-detail.html',
   styleUrl: './news-detail.css',
 })

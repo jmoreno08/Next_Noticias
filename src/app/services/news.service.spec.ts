@@ -3,6 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NewsService } from './news.service';
 import { News } from '../models/news';
+import { LocalNewsService } from './local-news.service';
 
 describe('NewsService', () => {
   let service: NewsService;
@@ -33,6 +34,7 @@ describe('NewsService', () => {
   ];
 
   beforeEach(() => {
+    localStorage.removeItem('next-noticias:local-news');
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
@@ -40,7 +42,29 @@ describe('NewsService', () => {
     http = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => http.verify());
+  afterEach(() => {
+    http.verify();
+    localStorage.removeItem('next-noticias:local-news');
+  });
+
+  it('updates the catalogue and detail when a local article is created or deleted', () => {
+    let result: News[] = [];
+    service.obtenerNoticias().subscribe((value) => (result = value));
+    http.expectOne('data/noticias.json').flush(articles);
+    const local = TestBed.inject(LocalNewsService);
+    local.create(
+      { ...articles[0], imagen: 'https://example.com/photo.jpg' },
+      articles.map((item) => item.id),
+    );
+    expect(result).toHaveLength(3);
+    const id = local.articles()[0].id;
+    let detail: News | undefined;
+    service.obtenerNoticiaPorId(id).subscribe((value) => (detail = value));
+    expect(detail?.id).toBe(id);
+    local.remove(id);
+    expect(detail).toBeUndefined();
+    expect(result).toEqual(articles);
+  });
 
   it('loads the JSON once and shares it between consumers', () => {
     service.obtenerNoticias().subscribe((result) => expect(result).toEqual(articles));

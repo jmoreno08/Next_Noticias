@@ -1,0 +1,124 @@
+@if (sent()) {
+  <div class="success" role="status">
+    <img src="icons/contact-check.svg" alt="" /><span
+      >Tu mensaje ha sido enviado correctamente.</span
+    >
+  </div>
+}
+<main class="contact">
+  <header class="contact__intro">
+    <h1>Contáctanos</h1>
+    <p>
+      ¿Tienes alguna pregunta, sugerencia o reporte de noticia? Completa el formulario para
+      compartir tu mensaje con nuestro equipo editorial.
+    </p>
+    <p class="demo-note" id="contact-demo">
+      Demostración académica: el envío es simulado; no se envían ni almacenan tus datos.
+    </p>
+  </header>
+  <div class="contact__grid">
+    <form
+      #formElement
+      #formDirective="ngForm"
+      [formGroup]="form"
+      (ngSubmit)="submit(formDirective)"
+      (input)="sent.set(false)"
+      aria-describedby="contact-demo"
+      novalidate
+    >
+      <div class="field">
+        <label for="contact-name">Nombre</label>
+        <input
+          id="contact-name"
+          type="text"
+          formControlName="nombre"
+          autocomplete="name"
+          placeholder="Tu nombre"
+          required
+          [attr.aria-invalid]="!!error('nombre')"
+          [attr.aria-describedby]="error('nombre') ? 'name-error' : null"
+        />
+        @if (error('nombre')) {
+          <p class="field-error" id="name-error">{{ error('nombre') }}</p>
+        }
+      </div>
+      <div class="field">
+        <label for="contact-email">Correo electrónico</label>
+        <input
+          id="contact-email"
+          type="email"
+          formControlName="correo"
+          autocomplete="email"
+          placeholder="tu@correo.com"
+          required
+          [attr.aria-invalid]="!!error('correo')"
+          [attr.aria-describedby]="error('correo') ? 'email-error' : null"
+        />
+        @if (error('correo')) {
+          <p class="field-error" id="email-error">{{ error('correo') }}</p>
+        }
+      </div>
+      <div class="field">
+        <label for="contact-subject">Asunto</label>
+        <input
+          id="contact-subject"
+          type="text"
+          formControlName="asunto"
+          placeholder="¿Sobre qué quieres escribirnos?"
+          required
+          [attr.aria-invalid]="!!error('asunto')"
+          [attr.aria-describedby]="error('asunto') ? 'subject-error' : null"
+        />
+        @if (error('asunto')) {
+          <p class="field-error" id="subject-error">{{ error('asunto') }}</p>
+        }
+      </div>
+      <div class="field">
+        <label for="contact-message">Mensaje</label>
+        <textarea
+          id="contact-message"
+          formControlName="mensaje"
+          rows="5"
+          placeholder="Escribe detalladamente tu mensaje aquí..."
+          required
+          [attr.aria-invalid]="!!error('mensaje')"
+          [attr.aria-describedby]="error('mensaje') ? 'message-error' : null"
+        ></textarea>
+        @if (error('mensaje')) {
+          <p class="field-error" id="message-error">{{ error('mensaje') }}</p>
+        }
+      </div>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+    <aside aria-label="Información de contacto">
+      <div class="info-card">
+        <span class="info-icon"><img src="icons/contact-mail.svg" alt="" /></span>
+        <div>
+          <h2>Email de contacto</h2>
+          <p>contacto@nextnoticias.com</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="info-icon"><img src="icons/contact-phone.svg" alt="" /></span>
+        <div>
+          <h2>Teléfono</h2>
+          <p>+593 2 123 4567</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="info-icon"><img src="icons/contact-map.svg" alt="" /></span>
+        <div>
+          <h2>Dirección</h2>
+          <p>Av. República E7-123, Quito, Ecuador</p>
+        </div>
+      </div>
+      <div class="editorial">
+        <h2>Atención Editorial</h2>
+        <p>
+          Nuestro equipo de redacción y soporte está activo de Lunes a Viernes de 08:00 a 18:00
+          (GMT-5).
+        </p>
+      </div>
+    </aside>
+  </div>
+</main>

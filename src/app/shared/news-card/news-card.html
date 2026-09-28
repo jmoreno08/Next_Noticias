@@ -1,5 +1,6 @@
 <article class="news-card">
   <img
+    appNewsImage
     class="news-card__photo"
     [src]="article().imagen"
     alt=""
@@ -10,15 +11,7 @@
   <div class="news-card__body">
     <div class="news-card__meta">
       <span class="news-card__category">{{ article().categoria }}</span>
-      <button
-        class="news-card__favorite"
-        type="button"
-        disabled
-        aria-label="Guardar en favoritos (próximamente)"
-        title="Favoritos disponible próximamente"
-      >
-        <img src="icons/heart-off.svg" alt="" />
-      </button>
+      <app-favorite-button [id]="article().id" [title]="article().titulo" />
     </div>
     <h3>{{ article().titulo }}</h3>
     <time [attr.datetime]="article().fecha">{{ article().fecha | date: 'dd MMM yyyy' }}</time>

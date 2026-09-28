@@ -45,12 +45,6 @@ button {
   padding: 10px 16px;
   background: #f8fafc;
 }
-.save {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-}
 h1 {
   font-size: 36px;
   line-height: 1.25;

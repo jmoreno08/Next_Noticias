@@ -16,9 +16,7 @@
       <article>
         <div class="detail__top">
           <span class="badge">{{ article.categoria }}</span
-          ><button class="save" type="button" disabled title="Favoritos disponible próximamente">
-            <img src="icons/heart-detail.svg" alt="" /> Guardar artículo
-          </button>
+          ><app-favorite-button [id]="article.id" [title]="article.titulo" [expanded]="true" />
         </div>
         <h1>{{ article.titulo }}</h1>
         <div class="byline">
@@ -27,6 +25,7 @@
           ><time [attr.datetime]="article.fecha">{{ article.fecha | date: 'dd MMM yyyy' }}</time>
         </div>
         <img
+          appNewsImage
           class="detail__image"
           [src]="article.imagen"
           [alt]="article.titulo"

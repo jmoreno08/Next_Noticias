@@ -11,7 +11,7 @@
   </div>
   @if (featured(); as article) {
     <div class="hero__featured">
-      <img class="hero__image" [src]="article.imagen" alt="" />
+      <img appNewsImage class="hero__image" [src]="article.imagen" alt="" />
       <article class="hero__card">
         <span class="hero__card-label">Destacado del Día</span>
         <h2 class="hero__card-title">{{ article.titulo }}</h2>
