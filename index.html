@@ -3,7 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Next Noticias</title>
-    <base href="/Next_Noticias/">
+    <base href="/">
+    <script>
+      // Restore the original route before Angular Router starts.
+      const restored = new URLSearchParams(location.search).get('restoreRoute');
+      if (restored !== null) {
+        const base = new URL(document.baseURI);
+        const target = new URL(restored, base);
+        if (target.origin === base.origin && target.pathname.startsWith(base.pathname)) {
+          history.replaceState(null, '', target.pathname + target.search + target.hash);
+        }
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,5 +23,5 @@
   <style>body{font-family:Manrope,sans-serif;font-optical-sizing:auto;margin:0;padding:0;box-sizing:border-box}</style><link rel="stylesheet" href="styles-P5VVC4IL.css" media="print" data-beasties-media="all"><noscript><link rel="stylesheet" href="styles-P5VVC4IL.css"></noscript></head>
   <body>
     <app-root></app-root>
-  <script src="main-L3ALIHVZ.js" type="module"></script><script>document.querySelectorAll('link[data-beasties-media]').forEach(function(l){l.media=l.getAttribute('data-beasties-media');l.removeAttribute('data-beasties-media')})</script></body>
+  <script src="main-YWO3KT2J.js" type="module"></script><script>document.querySelectorAll('link[data-beasties-media]').forEach(function(l){l.media=l.getAttribute('data-beasties-media');l.removeAttribute('data-beasties-media')})</script></body>
 </html>
