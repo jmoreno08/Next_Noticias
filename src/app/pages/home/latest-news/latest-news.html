@@ -1,0 +1,23 @@
+<section class="latest-news" aria-labelledby="latest-news-title">
+  <h2 id="latest-news-title">Últimas noticias</h2>
+  <div class="latest-news__grid">
+    @for (article of articles; track article.title) {
+      <article class="latest-news__card">
+        <div
+          [class]="'news-photo news-photo--thumbnail news-photo--' + article.image"
+          style="background-image: url('images/news-reference.png')"
+          aria-hidden="true"
+        ></div>
+        <div class="latest-news__content">
+          <span class="latest-news__category">{{ article.category }}</span>
+          <h3>
+            <button type="button" (click)="onArticleClick(article.title)">
+              {{ article.title }}
+            </button>
+          </h3>
+          <span class="latest-news__published">{{ article.published }}</span>
+        </div>
+      </article>
+    }
+  </div>
+</section>

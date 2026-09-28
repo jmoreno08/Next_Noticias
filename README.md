@@ -1,5 +1,20 @@
 # NextNoticias
 
+## Secciones de noticias de la portada
+
+La portada incluye tres noticias destacadas y cuatro noticias recientes, basadas en
+la referencia `next-noticias-home.png`. Las cuadrículas se adaptan a una columna
+en pantallas de hasta 720 px.
+
+Las fotografías se muestran mediante un sprite CSS de la referencia proporcionada
+(`public/images/news-reference.png`), con coordenadas en
+`src/app/pages/home/news-images.css`. Cuando estén disponibles las fotografías
+originales, se pueden reemplazar por imágenes individuales. Los textos y tiempos
+son datos de muestra; los botones de artículos, favoritos y listado completo
+mantienen manejadores pendientes de integrar, como los controles existentes.
+
+La versión actual de Angular requiere Node.js 22.22.3+, 24.15.0+ o 26+.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
 
 ## Development server
