@@ -1,4 +1,7 @@
 <app-header />
+@if (auth.error()) {
+  <p class="storage-error" role="alert">{{ auth.error() }}</p>
+}
 @if (localNews.error()) {
   <p class="storage-error" role="alert">{{ localNews.error() }}</p>
 }

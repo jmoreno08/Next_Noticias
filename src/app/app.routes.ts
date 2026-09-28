@@ -6,6 +6,8 @@ import { NotFound } from './pages/not-found';
 import { Favorites } from './pages/favorites/favorites';
 import { Contact } from './pages/contact/contact';
 import { Admin } from './pages/admin/admin';
+import { Login } from './pages/login/login';
+import { adminGuard } from './services/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: Home, pathMatch: 'full', title: 'Inicio | NEXT Noticias' },
@@ -13,6 +15,12 @@ export const routes: Routes = [
   { path: 'noticias/:id', component: NewsDetail, title: 'Artículo | NEXT Noticias' },
   { path: 'favoritos', component: Favorites, title: 'Favoritos | NEXT Noticias' },
   { path: 'contacto', component: Contact, title: 'Contacto | NEXT Noticias' },
-  { path: 'administracion', component: Admin, title: 'Administración | NEXT Noticias' },
+  { path: 'login', component: Login, title: 'Iniciar sesión | NEXT Noticias' },
+  {
+    path: 'administracion',
+    component: Admin,
+    canActivate: [adminGuard],
+    title: 'Administración | NEXT Noticias',
+  },
   { path: '**', component: NotFound, title: 'Página no encontrada | NEXT Noticias' },
 ];

@@ -104,7 +104,7 @@ Si una imagen falla se muestra una ilustración local. No incluye edición.
 - Ante fallos de escritura se conserva el estado previo y se muestra un aviso.
 - Ante datos locales inválidos se muestra un aviso global y se usa un estado vacío;
   el contenido original no se borra automáticamente del almacenamiento.
-- No hay backend ni autenticación. Inicio de sesión, enlaces sociales y páginas
+- No hay backend ni autenticación real. Los enlaces sociales y páginas
   legales son elementos pendientes del diseño, fuera del alcance funcional de esta entrega.
 - Los datos de contacto proceden del diseño y son ejemplos.
 
@@ -140,3 +140,25 @@ La validación local no sustituye una comprobación del sitio después de public
 ## Autor
 
 Jonathan Moreno
+
+## Sesión de demostración
+
+La ruta `/login` permite acceder con la cuenta pública de prueba:
+
+- Correo: `admin@nextnoticias.demo`
+- Contraseña: `DemoNoticias2026`
+
+El menú Administración solo aparece con sesión. Un guard protege el acceso directo
+a `/administracion` y redirige al formulario de inicio de sesión. Al entrar se
+recupera la ruta protegida solicitada. Cerrar sesión borra el marcador de sesión y
+regresa al inicio; no elimina noticias ni favoritos.
+
+`AuthService` conserva únicamente el marcador `admin-demo` en
+`sessionStorage`, bajo `next-noticias:demo-session`; no guarda contraseñas.
+La sesión sobrevive a recargas. Es una simulación académica: el almacenamiento
+puede manipularse y no constituye autorización segura. Para producción se requiere
+validar identidad y permisos en un backend o proveedor de autenticación.
+
+Validación de esta etapa: 31 pruebas aprobadas, compilación de producción y
+verificación en navegador de login válido/inválido, guard, menú, recarga, logout y
+adaptación del formulario a 1440, 768, 390 y 320 px.

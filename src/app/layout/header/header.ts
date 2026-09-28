@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 interface NavLink {
@@ -15,7 +16,11 @@ interface NavLink {
 })
 export class Header {
   private readonly router = inject(Router);
-  protected readonly navLinks: NavLink[] = [
+  protected readonly auth = inject(AuthService);
+  protected readonly navLinks = computed(() =>
+    this.links.filter((link) => link.path !== '/administracion' || this.auth.isAdmin()),
+  );
+  private readonly links: NavLink[] = [
     { label: 'Inicio', path: '/' },
     { label: 'Noticias', path: '/noticias' },
     { label: 'Favoritos', path: '/favoritos' },
@@ -39,6 +44,12 @@ export class Header {
   }
 
   onLoginClick(): void {
-    console.info('Inicio de sesión pendiente de implementar');
+    this.isMenuOpen = false;
+    if (this.auth.isAdmin()) {
+      this.auth.logout();
+      void this.router.navigate(['/']);
+    } else {
+      void this.router.navigate(['/login']);
+    }
   }
 }

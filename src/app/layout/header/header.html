@@ -17,7 +17,7 @@
   </div>
 
   <nav class="header__nav" [class.header__nav--open]="isMenuOpen">
-    @for (link of navLinks; track link.label) {
+    @for (link of navLinks(); track link.label) {
       @if (link.path) {
         <a
           class="header__nav-link"
@@ -44,6 +44,8 @@
     <button type="button" class="header__icon-button" aria-label="Buscar" (click)="onSearchClick()">
       <img src="icons/search-trigger.svg" alt="" class="header__icon" />
     </button>
-    <button type="button" class="header__login" (click)="onLoginClick()">Iniciar sesión</button>
+    <button type="button" class="header__login" (click)="onLoginClick()">
+      {{ auth.isAdmin() ? 'Cerrar sesión' : 'Iniciar sesión' }}
+    </button>
   </div>
 </header>
