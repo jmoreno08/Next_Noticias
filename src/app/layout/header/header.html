@@ -12,8 +12,15 @@
       <span></span>
     </button>
 
-    <img src="icons/logo.svg" alt="Logo de NEXT Noticias" class="header__logo" />
-    <span class="header__title">NEXT Noticias</span>
+    <a
+      class="header__brand-link"
+      routerLink="/"
+      aria-label="Ir al inicio de NEXT Noticias"
+      (click)="onNavLinkClick()"
+    >
+      <img src="icons/logo.svg" alt="Logo de NEXT Noticias" class="header__logo" />
+      <span class="header__title">NEXT Noticias</span>
+    </a>
   </div>
 
   <nav class="header__nav" [class.header__nav--open]="isMenuOpen">
